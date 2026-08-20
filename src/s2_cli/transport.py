@@ -37,9 +37,7 @@ class NotFoundError(ResponseError):
 
 
 def read_api_key() -> str:
-    key = os.environ.get("PWC_SEMANTIC_SCHOLAR_API_KEY") or os.environ.get(
-        "S2_API_KEY"
-    )
+    key = os.environ.get("PWC_SEMANTIC_SCHOLAR_API_KEY") or os.environ.get("S2_API_KEY")
     if not key or not key.strip():
         raise MissingKeyError(
             "missing API key; set PWC_SEMANTIC_SCHOLAR_API_KEY or S2_API_KEY"
@@ -102,15 +100,14 @@ class Client:
         for attempt in range(self.max_retries):
             self._throttle()
             try:
-                with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
+                with urllib.request.urlopen(
+                    request, timeout=TIMEOUT_SECONDS
+                ) as response:
                     body = _read_bounded(response)
                     self._last_request_at = time.monotonic()
                     return Response(
                         body,
-                        {
-                            key.lower(): value
-                            for key, value in response.headers.items()
-                        },
+                        {key.lower(): value for key, value in response.headers.items()},
                         getattr(response, "status", 200),
                     )
             except urllib.error.HTTPError as error:

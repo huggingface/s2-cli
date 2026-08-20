@@ -31,9 +31,7 @@ DEFAULT_CITATION_FIELDS = (
     "citingPaper.paperId,citingPaper.title,citingPaper.year,"
     "citingPaper.citationCount,citingPaper.externalIds"
 )
-DEFAULT_SEARCH_FIELDS = (
-    "title,year,citationCount,externalIds,url,authors,abstract"
-)
+DEFAULT_SEARCH_FIELDS = "title,year,citationCount,externalIds,url,authors,abstract"
 Handler = Callable[[argparse.Namespace, Client], int]
 
 
@@ -127,7 +125,9 @@ def _print_more(payload: dict[str, Any]) -> None:
     print(f"# more: rerun with --offset {nxt}", file=sys.stderr)
 
 
-def _edge_items(payload: Any, nested_key: str) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+def _edge_items(
+    payload: Any, nested_key: str
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     if not isinstance(payload, dict):
         raise ResponseError("API returned an unexpected response shape")
     values = payload.get("data")

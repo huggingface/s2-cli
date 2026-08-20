@@ -8,10 +8,10 @@ from email.message import EmailMessage
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-
-import pytest
 
 from s2_cli.cli import build_parser, main  # noqa: E402
 from s2_cli.resolve import normalize_paper_id  # noqa: E402
@@ -131,9 +131,7 @@ def test_search_tsv_and_more(monkeypatch, capsys):
                 "limit": 20,
                 "offset": 0,
                 "year": "2025-2026",
-                "fields": (
-                    "title,year,citationCount,externalIds,url,authors,abstract"
-                ),
+                "fields": ("title,year,citationCount,externalIds,url,authors,abstract"),
             },
         )
     ]
