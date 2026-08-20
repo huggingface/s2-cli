@@ -1,0 +1,22 @@
+[project]
+name = "s2-cli"
+version = "0.1.0"
+description = "Read-only Semantic Scholar research CLI"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+dependencies = []
+
+[project.scripts]
+s2 = "s2_cli.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/huggingface/s2-cli"
+Repository = "https://github.com/huggingface/s2-cli"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/s2_cli"]
