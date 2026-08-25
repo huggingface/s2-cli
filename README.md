@@ -2,6 +2,8 @@
 
 A fast, read-only command-line client for the [Semantic Scholar Graph API](https://api.semanticscholar.org/api-docs/graph), alongside a Skill for coding agents.
 
+Built to power [Papers with Code](https://paperswithcode.co)'s chat interface.
+
 Use `s2` to:
 
 - list the papers a work **cites** (`s2 refs`)
